@@ -60,7 +60,6 @@ class Solution1 implements Solution {
                 return;
             }
 
-
             for (Node nextNode : nextNodes) {
                 if (nextNode.c == chars[i]) {
                     nextNode.insert(chars, i + 1);
