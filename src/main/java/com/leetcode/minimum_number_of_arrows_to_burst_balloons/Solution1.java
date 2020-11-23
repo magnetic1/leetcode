@@ -21,7 +21,7 @@ class Solution1 implements Solution {
         if(n == 1)  return 1;
         int count = n;
         Arrays.sort(points, (a, b) -> {
-            return a[0] - b[0];     //排序后则不用考虑左边界，只需考虑右边界
+            return Integer.compare(a[0], b[0]);     //排序后则不用考虑左边界，只需考虑右边界
         });
 
         for(int i = 1; i < n; i++){
