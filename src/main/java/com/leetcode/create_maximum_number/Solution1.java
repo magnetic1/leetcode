@@ -20,7 +20,7 @@ class Solution1 implements Solution {
 
     public int[] maxNumber(int[] nums1, int[] nums2, int k) {
         int[] res = new int[k];
-        int maxNumber = 0;
+        long maxNumber = 0;
         int m = nums1.length, n = nums2.length;
 
         int len1 = Math.min(m, k);
@@ -31,15 +31,10 @@ class Solution1 implements Solution {
         for(int i = 0; i <= len1; i++) {
             int j = k - i;
             if (i <= len1 && j <= len2) {
-                int[] s1 = getStack(stack1, i);
-                int[] s2 = getStack(stack2, j);
+                int[] s1 = getStack(nums1, i);
+                int[] s2 = getStack(nums2, j);
                 int[] s = merge(s1, s2);
-                int v = 0;
-                for(int c : s) {
-                    v = v * 10 + c;
-                }
-                if (v > maxNumber) {
-                    maxNumber = v;
+                if(compare(res, 0, s, 0) < 0) {
                     res = s;
                 }
             }
@@ -48,34 +43,24 @@ class Solution1 implements Solution {
         return res;
     }
 
-    int[] getStack(int[] nums1, int len1) {
-        if (len1 == 0) {
-            return new int[0];
-        }
-        int[] stack1 = new int[len1];
-        int m = nums1.length;
-        int len = 0;
-        SSS:
-        for (int i = 0; i < m; i++) {
-            if (len1 - len == m - i) {
-                System.arraycopy(nums1, i, stack1, len, m - i);
-                break;
+    int[] getStack(int[] nums, int k) {
+        int length = nums.length;
+        int[] stack = new int[k];
+        int top = -1;
+        int remain = length - k;
+        for (int i = 0; i < length; i++) {
+            int num = nums[i];
+            while (top >= 0 && stack[top] < num && remain > 0) {
+                top--;
+                remain--;
             }
-            int b = m - i - (len1 - len);
-            b = Math.max(len - b, 0);
-            for (int j = b; j < len; j++) {
-                if (nums1[i] > stack1[j]) {
-                    stack1[j] = nums1[i];
-                    continue SSS;
-                }
-            }
-            if(len < len1) {
-                stack1[len] = nums1[i];
-                len++;
+            if (top < k - 1) {
+                stack[++top] = num;
+            } else {
+                remain--;
             }
         }
-
-        return stack1;
+        return stack;
     }
 
     int[] merge(int[] stack1, int[] stack2) {
@@ -124,6 +109,19 @@ class Solution1 implements Solution {
         }
 
         return res;
+    }
+
+    public int compare(int[] subsequence1, int index1, int[] subsequence2, int index2) {
+        int x = subsequence1.length, y = subsequence2.length;
+        while (index1 < x && index2 < y) {
+            int difference = subsequence1[index1] - subsequence2[index2];
+            if (difference != 0) {
+                return difference;
+            }
+            index1++;
+            index2++;
+        }
+        return (x - index1) - (y - index2);
     }
 
     public static void main(String[] args) {
