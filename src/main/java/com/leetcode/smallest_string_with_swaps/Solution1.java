@@ -37,16 +37,16 @@ class Solution1 implements Solution {
         }
 
         Map<Integer, List<Character>> charsMap = new HashMap<>();
-        Map<Integer, List<Integer>> indexsMap = new HashMap<>();
+        Map<Integer, List<Integer>> indexesMap = new HashMap<>();
         for (int i = 0; i < n; i++) {
             int type = find(p, i);
             List<Character> charList = charsMap.getOrDefault(type, new ArrayList<>());
             charList.add(chars[i]);
             charsMap.put(type, charList);
 
-            List<Integer> indexList = indexsMap.getOrDefault(type, new ArrayList<>());
+            List<Integer> indexList = indexesMap.getOrDefault(type, new ArrayList<>());
             indexList.add(i);
-            indexsMap.put(type, indexList);
+            indexesMap.put(type, indexList);
         }
 
         for (Map.Entry<Integer, List<Character>> entry : charsMap.entrySet()) {
@@ -54,7 +54,7 @@ class Solution1 implements Solution {
             List<Character> charList = entry.getValue();
             charList.sort(Character::compareTo);
 
-            List<Integer> indexList = indexsMap.get(type);
+            List<Integer> indexList = indexesMap.get(type);
             for (int i = 0; i < indexList.size(); i++) {
                 chars[indexList.get(i)] = charList.get(i);
             }
