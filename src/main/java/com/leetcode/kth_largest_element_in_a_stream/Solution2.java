@@ -14,13 +14,13 @@ import com.ciaoshen.leetcode.util.*;
  *     }
  * =============================================
  */
-class Solution2 implements Solution { }
+public class Solution2 implements Solution { }
 
-class KthLargest {
+class KthLargest1 {
     int k;
     PriorityQueue<Integer> queue = new PriorityQueue<>();
 
-    public KthLargest(int k, int[] nums) {
+    public KthLargest1(int k, int[] nums) {
         this.k = k;
         for(int num : nums) {
             queue.offer(num);
