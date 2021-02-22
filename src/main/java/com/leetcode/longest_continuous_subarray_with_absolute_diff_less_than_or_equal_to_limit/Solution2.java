@@ -32,11 +32,11 @@ class Solution2 implements Solution {
             }
             queMin.push(num);
 
-            if(queMax.peekLast() - queMin.peekLast() > limit) {
-                if(queMax.peekLast() == nums[left]) {
+            if(queMax.getLast() - queMin.getLast() > limit) {
+                if(queMax.getLast() == nums[left]) {
                     queMax.pollLast();
                 }
-                if(queMin.peekLast() == nums[left]) {
+                if(queMin.getLast() == nums[left]) {
                     queMin.pollLast();
                 }
                 left++;
