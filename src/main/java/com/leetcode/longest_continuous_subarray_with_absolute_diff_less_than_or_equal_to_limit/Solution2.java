@@ -21,7 +21,6 @@ class Solution2 implements Solution {
         Deque<Integer> queMax = new LinkedList<>();
         int left = 0, right = 0, n = nums.length;
 
-        int ret = 0;
         while(right < n) {
             int num = nums[right];
             while(!queMax.isEmpty() && queMax.peek() < num) {
