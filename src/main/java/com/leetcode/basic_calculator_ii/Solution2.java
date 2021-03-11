@@ -1,0 +1,53 @@
+/**
+ * Leetcode - basic_calculator_ii
+ */
+package com.leetcode.basic_calculator_ii;
+import java.util.*;
+import com.ciaoshen.leetcode.util.*;
+
+/** 
+ * log instance is defined in Solution interface
+ * this is how slf4j will work in this class:
+ * =============================================
+ *     if (log.isDebugEnabled()) {
+ *         log.debug("a + b = {}", sum);
+ *     }
+ * =============================================
+ */
+class Solution2 implements Solution {
+
+    public int calculate(String s) {
+        Deque<Integer> stack = new LinkedList<Integer>();
+        char preSign = '+';
+        int num = 0;
+        int n = s.length();
+        for (int i = 0; i < n; ++i) {
+            if (Character.isDigit(s.charAt(i))) {
+                num = num * 10 + s.charAt(i) - '0';
+            }
+            if (!Character.isDigit(s.charAt(i)) && s.charAt(i) != ' ' || i == n - 1) {
+                switch (preSign) {
+                    case '+':
+                        stack.push(num);
+                        break;
+                    case '-':
+                        stack.push(-num);
+                        break;
+                    case '*':
+                        stack.push(stack.pop() * num);
+                        break;
+                    default:
+                        stack.push(stack.pop() / num);
+                }
+                preSign = s.charAt(i);
+                num = 0;
+            }
+        }
+        int ans = 0;
+        while (!stack.isEmpty()) {
+            ans += stack.pop();
+        }
+        return ans;
+    }
+
+}
