@@ -15,7 +15,6 @@ import com.ciaoshen.leetcode.util.*;
  * =============================================
  */
 class Solution2 implements Solution {
-
     static class MyHashSet {
         private static final int BASE = 769;
         private LinkedList[] data;
