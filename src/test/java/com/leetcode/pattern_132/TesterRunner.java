@@ -1,7 +1,7 @@
 /**
  * Leetcode - 132_pattern
  */
-package com.leetcode.132_pattern;
+package com.leetcode.pattern_132;
 
 // basic util
 import java.util.*;

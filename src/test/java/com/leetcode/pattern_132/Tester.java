@@ -1,7 +1,7 @@
 /**
  * Leetcode - 132_pattern
  */
-package com.leetcode.132_pattern;
+package com.leetcode.pattern_132;
 
 import java.util.*;
 import com.ciaoshen.leetcode.util.*;
