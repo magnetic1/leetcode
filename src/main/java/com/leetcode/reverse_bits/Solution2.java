@@ -29,4 +29,7 @@ class Solution2 implements Solution {
         return n >>> 16 | n << 16;
     }
 
+    public static void main(String[] args) {
+        System.out.println((1 << 31) >> 1);
+    }
 }
