@@ -22,7 +22,7 @@ class Solution2 implements Solution {
         Arrays.sort(nums);
         ans.add(new ArrayList<>());
 
-        for(int i = 1; i <= nums.length; i++) {
+        for (int i = 1; i <= nums.length; i++) {
             search(nums, 0, i, new ArrayList<>());
         }
 
@@ -32,25 +32,23 @@ class Solution2 implements Solution {
     void search(int[] nums, int i, int len, List<Integer> list) {
         int n = nums.length;
 
-        if(n < i + len) {
+        if (n < i + len) {
             return;
         }
 
-        if(len == 0) {
+        if (len == 0) {
             ans.add(new ArrayList<>(list));
             return;
         }
 
         int value = nums[i] - 1;
-        for(; i < n; i++) {
-            if(nums[i] != value) {
+        for (; i < n; i++) {
+            if (nums[i] != value) {
                 list.add(nums[i]);
                 search(nums, i + 1, len - 1, list);
                 list.remove(list.size() - 1);
                 value = nums[i];
             }
         }
-
     }
-
 }
