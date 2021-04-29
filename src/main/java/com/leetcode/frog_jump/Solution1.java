@@ -33,22 +33,16 @@ class Solution1 implements Solution {
         for (int i = 1; i < stones.length; i++) {
             jumps[i] = new HashSet<>();
             for (int j = 0; j < i; j++) {
-                for (int jump : jumps[i]) {
+                for (int jump : jumps[j]) {
                     if (jump + stones[j] == stones[i]) {
                         jumps[i].add(jump);
-                    } else if (jump + stones[j] + 1 == stones[i]) {
                         jumps[i].add(jump + 1);
-                    } else if (jump + stones[j] - 1 == stones[i]) {
                         jumps[i].add(jump - 1);
                     }
                 }
             }
         }
         return !jumps[stones.length - 1].isEmpty();
-    }
-
-    public static void main(String[] args) {
-
     }
 
 }
